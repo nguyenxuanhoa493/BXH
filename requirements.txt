@@ -1,2 +1,5 @@
 streamlit
 requests
+urllib3
+pandas
+streamlit_autorefresh
