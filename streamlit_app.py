@@ -45,7 +45,10 @@ class Domain:
             'page':1,
         }
         r = self.send('POST', '/contest/score/rank', payload)
-        return r['result']
+        if r['count]>0:
+            return r['result']
+        else:
+             return []
             
             
         
