@@ -143,7 +143,7 @@ def one_rank(data):
 st.title(':blue[Bảng xếp hạng cuộc thi tranh tài BVLN tháng 6]')
 bvl = Domain('bvl')
 
-count = st_autorefresh(interval=5000, limit=100, key="fizzbuzzcounter")
+count = st_autorefresh(interval=5000, limit=1000, key="fizzbuzzcounter")
 rank1= bvl.rank('9593795')
 rank2= bvl.rank('9591645')
 if rank2 and not rank1:
