@@ -45,7 +45,11 @@ class Domain:
             'page':1,
         }
         r = self.send('POST', '/contest/score/rank', payload)
-        return r['result']
+        try:
+            return r['result']
+        except:
+            return False
+            
         
 def merge_rank(rank1, rank2):
     list_score = []
@@ -167,4 +171,7 @@ with st.form(key='my_form'):
       loc = st.form_submit_button('Tìm kiếm')
 count = st_autorefresh(interval=5000, limit=100, key="fizzbuzzcounter")
 rank =get_rank(loc,round1,round2)
-show_rank(rank)
+if rank:
+    show_rank(rank)
+else:
+    st.write('Chưa có kết quả')
