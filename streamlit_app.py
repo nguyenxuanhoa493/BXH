@@ -136,7 +136,7 @@ def one_rank(data):
     rank.sort_values(by=['score', 'spent_time'], inplace=True,ascending = [False, True])
     rank.columns = ['Mã thí sinh', 'Họ và tên', 'Đơn vị','Tổng điểm', 'Tổng thời gian']
     return rank
-st.title('Bảng xếp hạng cuộc thi tranh tài BVLN tháng 6')
+st.title(':blue[Bảng xếp hạng cuộc thi tranh tài BVLN tháng 6]')
 bvl = Domain('bvl')
 
 count = st_autorefresh(interval=5000, limit=100, key="fizzbuzzcounter")
