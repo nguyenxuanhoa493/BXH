@@ -159,5 +159,6 @@ def get_rank(round1, round2):
     return rank
 
 # count = st_autorefresh(interval=5000, limit=100, key="fizzbuzzcounter")
-rank =get_rank(9591642,9591645)
-show_rank(rank)
+rank =get_rank(9591645,9591645)
+if rank:
+    show_rank(rank)
