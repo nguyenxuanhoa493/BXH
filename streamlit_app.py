@@ -140,8 +140,8 @@ def one_rank(data):
 bvl = Domain('bvl')
 
 # count = st_autorefresh(interval=5000, limit=100, key="fizzbuzzcounter")
-rank1= bvl.rank(round1)
-rank2= bvl.rank(round2)
+rank1= bvl.rank(9591645)
+rank2= bvl.rank(9591642)
 
 if rank1 and rank2:
     rank = rank = merge_rank(rank1,rank2)
