@@ -138,25 +138,19 @@ def one_rank(data):
     return rank
 
 bvl = Domain('bvl')
-def get_rank(round1, round2):
-    rank1= bvl.rank(round1)
-    rank2= bvl.rank(round2)
-
-    if rank1 and rank2:
-        rank = rank = merge_rank(rank1,rank2)
-    elif rank1 and not rank2:
-        rank = one_rank(rank1)
-    elif rank2 and not rank1:
-        rank = one_rank(rank2)
-    else:
-        rank = False
-    st.write(rank1)
-    st.write(rank2)
-    st.write(rank)
-    return rank
 
 # count = st_autorefresh(interval=5000, limit=100, key="fizzbuzzcounter")
-rank =get_rank(9591645,9591642)
+rank1= bvl.rank(round1)
+rank2= bvl.rank(round2)
+
+if rank1 and rank2:
+    rank = rank = merge_rank(rank1,rank2)
+elif rank1 and not rank2:
+    rank = one_rank(rank1)
+elif rank2 and not rank1:
+    rank = one_rank(rank2)
+else:
+    rank = False
 if rank:
     st.dataframe(rank,use_container_width=True, hide_index=True)
 else:
