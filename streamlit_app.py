@@ -144,16 +144,18 @@ def show_rank(rank):
 def get_rank(round1, round2):
     rank1= bvl.rank(round1)
     rank2= bvl.rank(round2)
-    st.write(rank1)
-    st.write(rank2)
+
     if rank1 and rank2:
         rank = rank = merge_rank(rank1,rank2)
     elif rank1 and not rank2:
         rank = one_rank(rank1)
-    # elif rank2 and not rank1:
-    #     rank = one_rank(rank2)
-    # else:
-    #     rank = False
+    elif rank2 and not rank1:
+        rank = one_rank(rank2)
+    else:
+        rank = False
+    st.write(rank1)
+    st.write(rank2)
+    st.write(rank)
     return rank
 
 # count = st_autorefresh(interval=5000, limit=100, key="fizzbuzzcounter")
