@@ -141,19 +141,11 @@ bvl = Domain('bvl')
 def show_rank(rank):
     st.dataframe(rank,use_container_width=True, hide_index=True)
 
-def get_rank(loc, round1, round2):
-    if round1:
-        rank1= bvl.rank(round1)
-    if round2:
-        rank2= bvl.rank(round2)
-    if not round1 and not round2:
-        rank1 = bvl.rank(6266578)
-        rank2 = bvl.rank(6266588)
-        rank = merge_rank(rank1,rank2)
-
+def get_rank(round1, round2):
+    rank1= bvl.rank(round1)
+    rank2= bvl.rank(round2)
     if rank1 and rank2:
         rank = rank = merge_rank(rank1,rank2)
-
     elif rank1 and not rank2:
         rank = one_rank(rank1)
     elif rank2 and not rank1:
@@ -162,18 +154,8 @@ def get_rank(loc, round1, round2):
         rank = False
     return rank
 
-with st.form(key='my_form'):
-    c1, c2, c3= st.columns([2,2,1])
-
-    with c1:
-      round1 = st.text_input('iid Vòng 1')
-    with c2:
-      round2 = st.text_input('iid Vòng 2')
-    with c3:
-      st.text('Tìm kiếm')
-      loc = st.form_submit_button('Tìm kiếm')
 count = st_autorefresh(interval=5000, limit=100, key="fizzbuzzcounter")
-rank =get_rank(loc,round1,round2)
+rank =get_rank(9591642,9591645)
 if rank:
     show_rank(rank)
 else:
