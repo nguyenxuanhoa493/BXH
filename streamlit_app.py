@@ -48,7 +48,7 @@ class Domain:
         if r['count']>0:
             return r['result']
         else:
-             return []
+             return False
             
             
         
@@ -142,22 +142,25 @@ def show_rank(rank):
     st.dataframe(rank,use_container_width=True, hide_index=True)
 
 def get_rank(loc, round1, round2):
-    if round1 and round2:
-        rank1 = bvl.rank(round1)
-        rank2 = bvl.rank(round2)
-        rank = merge_rank(rank1,rank2)
-       
-    elif round1 and not(round2):
-        rank = bvl.rank(round1)
-        rank = one_rank(rank)
-
-    elif round2 and not(round1):
-        rank = bvl.rank(round2)
-        rank = one_rank(rank)
-    else:
+    rank1, rank2 = False
+    if round1:
+        rank1= bvl.rank(round1)
+    if round2:
+        rank2= bvl.rank(round2)
+    if not round1 and not round2:
         rank1 = bvl.rank(6266578)
         rank2 = bvl.rank(6266588)
         rank = merge_rank(rank1,rank2)
+
+    if rank1 and rank2:
+        rank = rank = merge_rank(rank1,rank2)
+
+    elif rank1 and not rank2:
+        rank = one_rank(rank1)
+    elif rank2 and not rank1:
+        rank = one_rank(rank2)
+    else:
+        rank = False
     return rank
 
 with st.form(key='my_form'):
@@ -171,8 +174,8 @@ with st.form(key='my_form'):
       st.text('Tìm kiếm')
       loc = st.form_submit_button('Tìm kiếm')
 count = st_autorefresh(interval=5000, limit=100, key="fizzbuzzcounter")
-try:
-    rank =get_rank(loc,round1,round2)
+rank =get_rank(loc,round1,round2)
+if rank:
     show_rank(rank)
-except:
+else:
     st.write('Chưa có kết quả')
