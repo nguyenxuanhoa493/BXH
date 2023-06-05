@@ -162,3 +162,5 @@ def get_rank(round1, round2):
 rank =get_rank(9591645,9591645)
 if rank:
     show_rank(rank)
+else:
+    st.title('Chưa có kết quả')
