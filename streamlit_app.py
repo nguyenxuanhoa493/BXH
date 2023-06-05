@@ -151,13 +151,13 @@ rank2= bvl.rank(round2)
 
 if rank2 and not rank1:
     rank = one_rank(rank2)
-    st.dataframe(rank,use_container_width=True, hide_index=True)
+    st.dataframe(rank,use_container_width=True, hide_index=True, height=1000)
 elif rank1 and not rank2:
     rank = one_rank(rank1)
-    st.dataframe(rank,use_container_width=True, hide_index=True)
+    st.dataframe(rank,use_container_width=True, hide_index=True, height=1000)
 
 elif rank1 and rank2:
     rank = rank = merge_rank(rank1,rank2)
-    st.dataframe(rank,use_container_width=True, hide_index=True)
+    st.dataframe(rank,use_container_width=True, hide_index=True, height=1000)
 else:
     st.title('Chưa có kết quả')
