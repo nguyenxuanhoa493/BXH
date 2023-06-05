@@ -141,7 +141,7 @@ bvl = Domain('bvl')
 
 # count = st_autorefresh(interval=5000, limit=100, key="fizzbuzzcounter")
 rank1= bvl.rank('9591642')
-rank2= bvl.rank('9591645')
+rank2= bvl.rank('9591642')
 st.write(rank1)
 st.write(rank2)
 if rank2 and not rank1:
@@ -150,13 +150,9 @@ if rank2 and not rank1:
 elif rank1 and not rank2:
     rank = one_rank(rank1)
     st.dataframe(rank,use_container_width=True, hide_index=True)
-    
-# if rank1 and rank2:
-#     rank = rank = merge_rank(rank1,rank2)
-#     st.dataframe(rank,use_container_width=True, hide_index=True)
 
-# elif rank2 and not rank1:
-#     rank = one_rank(rank2)
-#     st.dataframe(rank,use_container_width=True, hide_index=True)
-# else:
-#     st.title('Chưa có kết quả')
+elif rank1 and rank2:
+    rank = rank = merge_rank(rank1,rank2)
+    st.dataframe(rank,use_container_width=True, hide_index=True)
+else:
+    st.title('Chưa có kết quả')
