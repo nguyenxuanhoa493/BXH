@@ -144,14 +144,23 @@ def get_rank(loc, round1, round2):
     if round1 and round2:
         rank1 = bvl.rank(round1)
         rank2 = bvl.rank(round2)
-        rank = merge_rank(rank1,rank2)
+        if rank1:
+            rank = merge_rank(rank1,rank2)
+        else:
+            return False
     elif round1 and not(round2):
         rank = bvl.rank(round1)
-        rank = one_rank(rank)
+        if rank:
+            rank = one_rank(rank)
+        else:
+            return False
 
     elif round2 and not(round1):
         rank = bvl.rank(round2)
-        rank = one_rank(rank)
+        if rank:
+            rank = one_rank(rank)
+        else:
+            return False
 
     else:
         rank1 = bvl.rank(6266578)
