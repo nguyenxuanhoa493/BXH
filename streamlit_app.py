@@ -104,7 +104,7 @@ def merge_rank(rank1, rank2):
     rank = [i for i in rank.values()]
     rank = pd.DataFrame(rank)
     rank.sort_values(by=['total_score', 'total_spent_time'], inplace=True,ascending = [False, True])
-    df['spent_time'] = pd.to_datetime(df['spent_time'], format='%M:%S', errors='coerce')  
+    rank['spent_time'] = pd.to_datetime(rank['spent_time'], format='%M:%S', errors='coerce')  
     
 
     rank = rank[['code', 'name', 'org', 'score', 'spent_time', 'score2', 'spent_time2', 'total_score','total_spent_time']]
