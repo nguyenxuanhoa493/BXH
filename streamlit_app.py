@@ -162,8 +162,7 @@ def get_rank(round1, round2):
 rank =get_rank(9591645,9591642)
 st.write(rank)
 st.write(type(rank))
-if not(rank):
-    st.title('Chưa có kết quả')
-    
+if rank:
+    show(rank)
 else:
-    show_rank(rank)
+    st.title('Chưa có kết quả')
