@@ -138,9 +138,6 @@ def one_rank(data):
     return rank
 
 bvl = Domain('bvl')
-def show_rank(rank):
-    st.dataframe(rank,use_container_width=True, hide_index=True)
-
 def get_rank(round1, round2):
     rank1= bvl.rank(round1)
     rank2= bvl.rank(round2)
@@ -161,6 +158,6 @@ def get_rank(round1, round2):
 # count = st_autorefresh(interval=5000, limit=100, key="fizzbuzzcounter")
 rank =get_rank(9591645,9591642)
 if rank:
-    show_rank(rank)
+    st.dataframe(rank,use_container_width=True, hide_index=True)
 else:
     st.title('Chưa có kết quả')
