@@ -45,10 +45,8 @@ class Domain:
             'page':1,
         }
         r = self.send('POST', '/contest/score/rank', payload)
-        try:
-            return r['result']
-        except:
-            return False
+        return r['result']
+            
             
         
 def merge_rank(rank1, rank2):
@@ -144,24 +142,15 @@ def get_rank(loc, round1, round2):
     if round1 and round2:
         rank1 = bvl.rank(round1)
         rank2 = bvl.rank(round2)
-        if rank1:
-            rank = merge_rank(rank1,rank2)
-        else:
-            return False
+        rank = merge_rank(rank1,rank2)
+       
     elif round1 and not(round2):
         rank = bvl.rank(round1)
-        if rank:
-            rank = one_rank(rank)
-        else:
-            return False
+        rank = one_rank(rank)
 
     elif round2 and not(round1):
         rank = bvl.rank(round2)
-        if rank:
-            rank = one_rank(rank)
-        else:
-            return False
-
+        rank = one_rank(rank)
     else:
         rank1 = bvl.rank(6266578)
         rank2 = bvl.rank(6266588)
@@ -179,8 +168,8 @@ with st.form(key='my_form'):
       st.text('Tìm kiếm')
       loc = st.form_submit_button('Tìm kiếm')
 count = st_autorefresh(interval=5000, limit=100, key="fizzbuzzcounter")
-rank =get_rank(loc,round1,round2)
-if rank:
+try:
+    rank =get_rank(loc,round1,round2)
     show_rank(rank)
-else:
+except:
     st.write('Chưa có kết quả')
