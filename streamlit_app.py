@@ -142,8 +142,6 @@ def show_rank(rank):
     st.dataframe(rank,use_container_width=True, hide_index=True)
 
 def get_rank(loc, round1, round2):
-    rank1 = False
-    rank2 = False
     if round1:
         rank1= bvl.rank(round1)
     if round2:
