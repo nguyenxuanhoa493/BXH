@@ -1,6 +1,7 @@
 import streamlit as st
+import requests
+import urllib3
 import pandas as pd
-import requests, urllib3
 from streamlit_autorefresh import st_autorefresh
 
 urllib3.disable_warnings()
@@ -139,10 +140,10 @@ def one_rank(data):
     rank['spent_time'] = pd.to_datetime(rank["spent_time"], unit='s').dt.strftime("%H:%M:%S")
     rank.columns = ['Mã thí sinh', 'Họ và tên', 'Đơn vị','Tổng điểm', 'Tổng thời gian']
     return rank
-bvl = Domain('bvl')
+st_autorefresh(interval=10000, limit=1000, key="fizzbuzzcounter")
 st.title(':blue[Bảng xếp hạng cuộc thi tranh tài BVLN tháng 6]')
+bvl = Domain('bvl')
 data=st.experimental_get_query_params()
-st_autorefresh(interval=10000, limit=1000, key="st_autorefresh")
 
 round1=data.get('round1',9591642)
 round2=data.get('round2',9591645)
@@ -162,8 +163,3 @@ elif rank1 and rank2:
     st.dataframe(rank,use_container_width=True, hide_index=True, height=1000)
 else:
     st.title('Chưa có kết quả')
-
-
-
-# st.download_button(label='📥 Download Current Result', file_name= 'bxh.xlsx')
-
