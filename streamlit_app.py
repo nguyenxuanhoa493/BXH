@@ -140,9 +140,11 @@ def one_rank(data):
     rank['spent_time'] = pd.to_datetime(rank["spent_time"], unit='s').dt.strftime("%H:%M:%S")
     rank.columns = ['Mã thí sinh', 'Họ và tên', 'Đơn vị','Tổng điểm', 'Tổng thời gian']
     return rank
+st_autorefresh(interval=10000, limit=1000, key="fizzbuzzcounter")
 st.title(':blue[Bảng xếp hạng cuộc thi tranh tài BVLN tháng 6]')
 bvl = Domain('bvl')
 data=st.experimental_get_query_params()
+
 round1=data.get('round1',9591642)
 round2=data.get('round2',9591645)
 
