@@ -163,8 +163,6 @@ elif rank1 and rank2:
 else:
     st.title('Chưa có kết quả')
 
-rank.to_excel('bxh.xlsx', sheet_name= 'bxh', index=False)
-
 
 
 # st.download_button(label='📥 Download Current Result', file_name= 'bxh.xlsx')
