@@ -150,16 +150,27 @@ round2=data.get('round2',9591645)
 
 rank1= bvl.rank(round1)
 rank2= bvl.rank(round2)
-
+def show(rank):
+    rank.to_excel('bxh.xlsx', sheet_name= 'bxh', index=False)
+    file = open("bxh.xlsx", "rb")
+    btn = st.download_button(
+            label="Xuất excel",
+            data=file,
+            file_name="Bảng xếp hạng.xlsx",
+            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        )
+    st.dataframe(rank,use_container_width=True, hide_index=True, height=1000)
+    
 if rank2 and not rank1:
     rank = one_rank(rank2)
-    st.dataframe(rank,use_container_width=True, hide_index=True, height=1000)
+    show(rank)
 elif rank1 and not rank2:
     rank = one_rank(rank1)
-    st.dataframe(rank,use_container_width=True, hide_index=True, height=1000)
+    show(rank)
 
 elif rank1 and rank2:
     rank = rank = merge_rank(rank1,rank2)
-    st.dataframe(rank,use_container_width=True, hide_index=True, height=1000)
+    show(rank)
 else:
     st.title('Chưa có kết quả')
+          
